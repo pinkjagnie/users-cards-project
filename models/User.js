@@ -5,7 +5,8 @@ const UserSchema = new mongoose.Schema({
   age: Number,
   tagFirst: String,
   tagSecond: String,
-  tagThird: String
+  tagThird: String,
+  hash: String,
 })
 
 module.exports = mongoose.models.User || mongoose.model('User', UserSchema)

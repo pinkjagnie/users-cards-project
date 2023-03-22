@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import md5 from 'md5-hash';
+
 import styles from "@/style";
 
 const AddUserForm = () => {
@@ -44,6 +46,21 @@ const AddUserForm = () => {
     console.log('3rd tag: ' + enteredTagThird);
     console.log(isChecked);
 
+    let newId = '';
+
+    function makeid(length) {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      const charactersLength = characters.length;
+      let counter = 0;
+      while (counter < length) {
+        newId += characters.charAt(Math.floor(Math.random() * charactersLength));
+        counter += 1;
+      }
+      return newId;
+    }
+
+    const newHash = md5(enteredFirstName + makeid(5));
+
     const res = await fetch('/api/users/add', {
       method: 'POST',
       headers: {
@@ -54,7 +71,8 @@ const AddUserForm = () => {
         age: enteredAge,
         tagFirst: enteredTagFirst,
         tagSecond: enteredTagSecond,
-        tagThird: enteredTagThird    
+        tagThird: enteredTagThird,
+        hash: newHash, 
       }),
     });
 
