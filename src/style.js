@@ -10,7 +10,9 @@ const styles = {
   mainBackgroundColor: "bg-zinc-100",
   mainTextColor: "text-slate-900",
 
-  tagsLabel: "text-xs border-2 border-zinc-100 rounded-md py-1 px-2 bg-slate-900"
+  tagsLabel: "text-xs border-2 border-zinc-100 rounded-md py-1 px-2 bg-slate-900",
+
+  titleText: 'pb-4 md:pt-4 lg:pt-0 uppercase font-bold text-xl lg:text-2xl text-center',
 };
 
 export default styles;
