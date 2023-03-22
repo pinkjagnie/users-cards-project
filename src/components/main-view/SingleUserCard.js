@@ -9,6 +9,19 @@ import { defaultUserProfilePhoto } from "@/assets/index";
 import styles from "@/style";
 
 const SingleUserCard = ({ user }) => {
+
+  const deleteUserHandler = () => {
+    fetch(`/api/users/delete/${user.hash}`, {
+      method: 'DELETE',
+      headers: {
+      'Content-Type': 'application/json',
+     },
+   }).then(response => response.json())
+   .then(data => {
+     console.log(data);
+   });
+  };
+
   return(
     <div className="py-4 md:py-0 w-[300px] max-[300px]:w-[250px] max-[340px]:w-[280px] mx-auto">
       <div>
@@ -30,7 +43,7 @@ const SingleUserCard = ({ user }) => {
           </div>
           <div className="flex justify-end pb-6">
             <Link href={`/users/edit/${user.hash}`}><FaUserCog size={25} className="cursor-pointer hover:text-lime-300"/></Link>
-            <FaUserTimes size={25} className="mx-4 cursor-pointer hover:text-lime-300"/>
+            <FaUserTimes size={25} className="mx-4 cursor-pointer hover:text-lime-300" onClick={deleteUserHandler}/>
           </div>
         </div>
       </div>
