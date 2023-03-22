@@ -16,7 +16,7 @@ const SingleUserCard = ({ user }) => {
       <div className="w-[300px] max-[300px]:w-[250px] max-[340px]:w-[280px] rounded-b-md bg-slate-800 text-zinc-100">
         <div className="w-[90%] mx-auto">
           <div className="font-medium">
-            <p className="pt-4 pb-2 uppercase">Name: {user.name}</p>
+            <p className="pt-4 pb-2 uppercase">Name: {user.firstName}</p>
             <p>Age: {user.age}</p>
           </div>
           <div className="w-[90%] mx-auto pt-8 pb-6">
