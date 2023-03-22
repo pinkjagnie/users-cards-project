@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import * as Yup from 'yup';
 import { useForm } from "react-hook-form";
@@ -7,6 +7,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import styles from "@/style";
 
 const AddUserForm = () => {
+  const [msgCreated, setMsgCreated] = useState("");
+
   const validation = Yup.object().shape({
     chooseCb: Yup.bool().oneOf([true], 'Checkbox selection is required'),
   })
@@ -59,6 +61,8 @@ const AddUserForm = () => {
     const response = await res.json();
     console.log(response);
     console.log(response.message);
+
+    setMsgCreated(response.message)
 
     reset();
   };
@@ -129,6 +133,7 @@ const AddUserForm = () => {
 
     </form>
 
+    {msgCreated && <p className="w-[90%] md:w-[60%] mx-auto font-medium text-center text-rose-900 uppercase pb-10">{msgCreated}</p>}
   </div>
   )
 };
