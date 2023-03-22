@@ -5,6 +5,8 @@ import { FaUserCog, FaUserTimes } from 'react-icons/fa';
 
 import { defaultUserProfilePhoto } from "@/assets/index";
 
+import styles from "@/style";
+
 const SingleUserCard = ({ user }) => {
   return(
     <div className="py-4 md:py-0 w-[300px] max-[300px]:w-[250px] max-[340px]:w-[280px] mx-auto">
@@ -17,12 +19,12 @@ const SingleUserCard = ({ user }) => {
             <p className="pt-4 pb-2 uppercase">Name: {user.name}</p>
             <p>Age: {user.age}</p>
           </div>
-          <div className="w-[80%] lg:w-[85%] mx-auto pt-4 pb-6">
-            <p className="underline">Tags:</p>
-            <div className="flex justify-between">
-              <label>{user.tagFirst}</label>
-              <label>{user.tagSecond}</label>
-              <label>{user.tagThird}</label>
+          <div className="w-[90%] mx-auto pt-8 pb-6">
+            <p className="underline pb-2">Tags:</p>
+            <div className="flex justify-between items-center">
+              <span className={styles.tagsLabel}>{user.tagFirst}</span>
+              <span className={styles.tagsLabel}>{user.tagSecond}</span>
+              <span className={styles.tagsLabel}>{user.tagThird}</span>
             </div>
           </div>
           <div className="flex justify-end pb-6">

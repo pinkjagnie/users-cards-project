@@ -8,7 +8,9 @@ const styles = {
   hoverBorderBasic: "hover:border-stone-800",
 
   mainBackgroundColor: "bg-zinc-100",
-  mainTextColor: "text-slate-900"
+  mainTextColor: "text-slate-900",
+
+  tagsLabel: "text-xs border-2 border-zinc-100 rounded-md py-1 px-2 bg-slate-900"
 };
 
 export default styles;
