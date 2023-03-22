@@ -3,6 +3,8 @@ import { Inter } from '@next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
+import MainContent from '@/components/main-view/MainContent';
+
 export default function Home() {
   return (
     <>
@@ -13,7 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <p>Hello</p>
+        <MainContent />
       </main>
     </>
   )
