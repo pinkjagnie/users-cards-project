@@ -23,7 +23,7 @@ const AddUserForm = () => {
   });
 
   async function onSubmit(data) {
-    const enteredFirstName = data.firstName;
+    const enteredFirstName = 'Astro ' + data.firstName;
     const enteredAge = data.age;
     const enteredTagFirst = data.tagFirst;
     const enteredTagSecond = data.tagSecond;
@@ -41,6 +41,24 @@ const AddUserForm = () => {
     console.log('2nd tag: ' + enteredTagSecond);
     console.log('3rd tag: ' + enteredTagThird);
     console.log(isChecked);
+
+    const res = await fetch('/api/users/add', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        firstName: enteredFirstName,
+        age: enteredAge,
+        tagFirst: enteredTagFirst,
+        tagSecond: enteredTagSecond,
+        tagThird: enteredTagThird    
+      }),
+    });
+
+    const response = await res.json();
+    console.log(response);
+    console.log(response.message);
 
     reset();
   };
