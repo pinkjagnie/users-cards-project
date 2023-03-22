@@ -15,7 +15,7 @@ const Navbar = () => {
           <Link href="/" className='font-bold text-lg md:text-3xl leading-[10vh]'>AstroUsers</Link>
         </div>
         <div className="px-4">
-          <FiUserPlus size={40} className="hover:text-lime-300 cursor-pointer" />
+          <Link href="/users/add"><FiUserPlus size={40} className="hover:text-lime-300 cursor-pointer" /></Link>
         </div>
       </div>
     </section>
