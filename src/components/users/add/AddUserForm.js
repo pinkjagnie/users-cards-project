@@ -1,10 +1,17 @@
 import React from "react";
 
+import * as Yup from 'yup';
 import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
 
 import styles from "@/style";
 
 const AddUserForm = () => {
+  const validation = Yup.object().shape({
+    chooseCb: Yup.bool().oneOf([true], 'Checkbox selection is required'),
+  })
+  const optionsForm = { resolver: yupResolver(validation) }
+
   const { register, handleSubmit, reset, formState: { errors, isDirty, isValid } } = useForm({
     defaultValues: {
       firstName: '',
@@ -21,12 +28,19 @@ const AddUserForm = () => {
     const enteredTagFirst = data.tagFirst;
     const enteredTagSecond = data.tagSecond;
     const enteredTagThird = data.tagThird;
+    const isChecked = data.chooseCb;
+
+    if (!isChecked) {
+      alert("Check if the form is filled in correctly! Maybe you forgot to tick the checkbox confirming the accuracy of the data you provided?");
+      return;
+    } 
 
     console.log('name: ' + enteredFirstName);
     console.log('age: ' + enteredAge);
     console.log('1st tag: ' + enteredTagFirst);
     console.log('2nd tag: ' + enteredTagSecond);
     console.log('3rd tag: ' + enteredTagThird);
+    console.log(isChecked);
 
     reset();
   };
@@ -84,6 +98,12 @@ const AddUserForm = () => {
         }})} />
         {errors.tagThird && <p className="text-rose-900">{errors.tagThird.message}</p>}
       </div>
+
+      <div className="pb-10">
+        <input type="checkbox" name="chooseCb" id="chooseCb" {...register('chooseCb')} />
+        <label htmlFor="chooseCb" className="pl-2">I confirm that the data provided by me is true.</label>
+        {errors.chooseCb && <p className="text-rose-900">{errors.chooseCb.message}</p>}
+        </div>
 
       <div className="flex justify-center py-4">
         <button type="submit" className='w-[80%] outline px-6 py-4 bg-slate-700 disabled:bg-slate-500 text-zinc-200 hover:bg-slate-600' disabled={!isDirty || !isValid}>Add yourself to our community</button>
