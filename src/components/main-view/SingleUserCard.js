@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { FaUserCog, FaUserTimes } from 'react-icons/fa';
 
@@ -28,7 +29,7 @@ const SingleUserCard = ({ user }) => {
             </div>
           </div>
           <div className="flex justify-end pb-6">
-            <FaUserCog size={25} className="cursor-pointer hover:text-lime-300"/>
+            <Link href={`/users/edit/${user.hash}`}><FaUserCog size={25} className="cursor-pointer hover:text-lime-300"/></Link>
             <FaUserTimes size={25} className="mx-4 cursor-pointer hover:text-lime-300"/>
           </div>
         </div>
