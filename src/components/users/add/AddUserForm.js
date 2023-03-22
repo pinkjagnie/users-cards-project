@@ -46,10 +46,11 @@ const AddUserForm = () => {
 
       <div className="pb-6">
         <label htmlFor='age' className="pl-2">Age *</label>
-        <input type='number' id='age' className={`w-[100%] border-b border-stone-800 ${styles.mainBackgroundColor}`} {...register("age", { required: {
+        <input type='number' id='age' className={`w-[100%] border-b border-stone-800 ${styles.mainBackgroundColor}`} {...register("age", { min: 13, message: 'You have to be at least 13 years old to join our community' }, { required: {
         value: true,
-        message: 'This field is requires'
+        message: 'This field is required'
         }})} />
+        <p className="text-sm italic text-lime-900 pl-2">You have to be at least 13 years old to join our community</p>
         {errors.age && <p className="text-rose-900">{errors.age.message}</p>}
       </div>
 
