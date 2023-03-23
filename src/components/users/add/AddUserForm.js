@@ -8,6 +8,8 @@ import md5 from 'md5-hash';
 
 import styles from "@/style";
 
+import Popup from "@/components/popup/Popup";
+
 const AddUserForm = () => {
   const [msgCreated, setMsgCreated] = useState("");
 
@@ -85,8 +87,13 @@ const AddUserForm = () => {
     reset();
   };
 
+  const closeMsgPopup = () => {
+    setMsgCreated(false)
+  };
+
   return(
     <div>
+      {msgCreated && <Popup msgCreated={msgCreated} closeMsgPopup={closeMsgPopup} />}
       <form onSubmit={handleSubmit(onSubmit)} className="w-[90%] md:w-[60%] pt-2 pb-6 mb-2 mx-auto">
 
       <div className="pb-6">
