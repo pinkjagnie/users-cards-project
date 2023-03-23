@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useRouter } from 'next/router';
 import Image from "next/image";
 import Link from "next/link";
 
@@ -6,9 +7,15 @@ import { FaUserCog, FaUserTimes } from 'react-icons/fa';
 
 import { defaultUserProfilePhoto } from "@/assets/index";
 
+import Popup from "../popup/Popup";
+
 import styles from "@/style";
 
 const SingleUserCard = ({ user }) => {
+  const [showPopup, setShowPopup] = useState(false);
+  const [msgCreated, setMsgCreated] = useState();
+
+  const router = useRouter();
 
   const deleteUserHandler = () => {
     fetch(`/api/users/delete/${user.hash}`, {
@@ -19,10 +26,23 @@ const SingleUserCard = ({ user }) => {
    }).then(response => response.json())
    .then(data => {
      console.log(data);
+     setShowPopup(true)
+     setMsgCreated(data.message)
    });
+
+    setTimeout(() => {
+      setShowPopup(false),
+      router.push('/')
+    }, 3000)
+  };  
+
+  const closeDeletePopup = () => {
+    setShowPopup(false)
   };
 
   return(
+    <>
+    {showPopup && <Popup msgCreated={msgCreated} closeMsgPopup={closeDeletePopup} />}
     <div className="py-4 md:py-0 w-[300px] max-[300px]:w-[250px] max-[340px]:w-[280px] mx-auto">
       <div>
         <Image src={defaultUserProfilePhoto} width={300} height={300} alt="user photo" className="rounded-t-md max-[300px]:w-[250px] max-[340px]:w-[280px]" />
@@ -48,6 +68,7 @@ const SingleUserCard = ({ user }) => {
         </div>
       </div>
     </div>
+    </>
   )
 };
 

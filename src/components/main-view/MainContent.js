@@ -17,7 +17,7 @@ const MainContent = () => {
       // console.log(data);
       setAstroUsers(data)
     });
-  }, [astroUsers])
+  }, [])
 
   return(
     <section className={`min-h-screen pt-28 min-[600px]:pt-36 lg:pt-28 pb-10 ${styles.mainBackgroundColor} ${styles.mainTextColor}`}>

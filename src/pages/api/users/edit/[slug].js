@@ -18,5 +18,5 @@ export default async function handler (req, res) {
 
   const user = await User.findOneAndUpdate(query, {$set: { firstName: firstName, age: age, tagFirst: tagFirst, tagSecond: tagSecond, tagThird: tagThird }});
 
-  res.status(201).json({ message: 'User data updated! Refresh the page to see changes you have made'});
+  res.status(201).json({ message: 'User data updated!'});
 }

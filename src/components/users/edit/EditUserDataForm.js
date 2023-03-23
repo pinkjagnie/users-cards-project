@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useRouter } from 'next/router';
 
 import * as Yup from 'yup';
 import { useForm } from "react-hook-form";
@@ -9,7 +10,10 @@ import styles from "@/style";
 import Popup from "@/components/popup/Popup";
 
 const EditUserDataForm = ({ user }) => {
+  const [showPopup, setShowPopup] = useState(false);
   const [msgCreated, setMsgCreated] = useState("");
+
+  const router = useRouter();
 
   const validation = Yup.object().shape({
     chooseCb: Yup.bool().oneOf([true], 'Checkbox selection is required'),
@@ -64,18 +68,24 @@ const EditUserDataForm = ({ user }) => {
     console.log(response);
     console.log(response.message);
 
-    setMsgCreated(response.message)
+    setShowPopup(true);
+    setMsgCreated(response.message);
 
     reset();
+
+    setTimeout(() => {
+      setShowPopup(false),
+      router.push('/')
+    }, 3000)
   };
 
   const closeMsgPopup = () => {
-    setMsgCreated(false)
+    setShowPopup(false)
   };
 
   return(
     <div>
-      {msgCreated && <Popup msgCreated={msgCreated} closeMsgPopup={closeMsgPopup} />}
+      {showPopup && <Popup msgCreated={msgCreated} closeMsgPopup={closeMsgPopup} />}
       <form onSubmit={handleSubmit(onSubmit)} className="w-[90%] md:w-[60%] pt-2 pb-6 mb-2 mx-auto">
 
       <div className="pb-6">

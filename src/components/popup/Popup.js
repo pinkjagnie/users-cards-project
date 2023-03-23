@@ -18,8 +18,8 @@ const Popup = (props) => {
           <Image src={rocketRide} height={170} width={170} alt="rocketman" className="pt-4 lg:pt-0 lg:pr-4" />
         </div>
 
-        <div className="flex flex-col xl:flex-row justify-center xl:justify-around py-8">
-          <Link href="/" className={`uppercase w-[90%] md:w-[60%] xl:w-[55%] mx-auto py-4 px-6 lg:px-8 xl:px-10 m-2 text-center cursor-pointer font-medium border-2 border-zinc-100 hover:border-stone-800 bg-stone-800 hover:bg-zinc-100 text-zinc-100 hover:text-stone-800`}>Now you can go home</Link>
+        <div className="py-8">
+          <p className='font-medium w-[90%] md:w-[60%] xl:w-[55%] mx-auto py-4 px-6 lg:px-8 xl:px-10 m-2 text-center'>In a few seconds I will fly away and you will go home</p>
         </div>
       </div>
     </div>
