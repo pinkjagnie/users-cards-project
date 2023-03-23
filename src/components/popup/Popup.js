@@ -19,7 +19,7 @@ const Popup = (props) => {
         </div>
 
         <div className="py-8">
-          <p className='font-medium w-[90%] md:w-[60%] xl:w-[55%] mx-auto py-4 px-6 lg:px-8 xl:px-10 m-2 text-center'>In a few seconds I will fly away and you will go home</p>
+          <p className='font-medium w-[90%] md:w-[60%] xl:w-[55%] mx-auto py-4 px-6 lg:px-8 xl:px-10 m-2 text-center'>{props.sloganCreated}</p>
         </div>
       </div>
     </div>

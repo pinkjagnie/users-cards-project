@@ -14,6 +14,7 @@ import styles from "@/style";
 const SingleUserCard = ({ user }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [msgCreated, setMsgCreated] = useState();
+  const [sloganCreated, setSloganCreated] = useState("");
 
   const router = useRouter();
 
@@ -28,12 +29,16 @@ const SingleUserCard = ({ user }) => {
      console.log(data);
      setShowPopup(true)
      setMsgCreated(data.message)
-   });
 
-    setTimeout(() => {
-      setShowPopup(false),
-      router.push('/')
-    }, 3000)
+     if (data.message === 'User deleted') {
+      setSloganCreated('In a few seconds I will fly away and you will go home')
+      setTimeout(() => {
+        setShowPopup(false),
+        router.push('/')
+      }, 3000)
+    };
+
+   });
   };  
 
   const closeDeletePopup = () => {
@@ -42,7 +47,7 @@ const SingleUserCard = ({ user }) => {
 
   return(
     <>
-    {showPopup && <Popup msgCreated={msgCreated} closeMsgPopup={closeDeletePopup} />}
+    {showPopup && <Popup msgCreated={msgCreated} closeMsgPopup={closeDeletePopup} sloganCreated={sloganCreated} />}
     <div className="py-4 md:py-0 w-[300px] max-[300px]:w-[250px] max-[340px]:w-[280px] mx-auto">
       <div>
         <Image src={defaultUserProfilePhoto} width={300} height={300} alt="user photo" className="rounded-t-md max-[300px]:w-[250px] max-[340px]:w-[280px]" />

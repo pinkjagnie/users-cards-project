@@ -12,6 +12,7 @@ import Popup from "@/components/popup/Popup";
 const EditUserDataForm = ({ user }) => {
   const [showPopup, setShowPopup] = useState(false);
   const [msgCreated, setMsgCreated] = useState("");
+  const [sloganCreated, setSloganCreated] = useState("");
 
   const router = useRouter();
 
@@ -71,12 +72,14 @@ const EditUserDataForm = ({ user }) => {
     setShowPopup(true);
     setMsgCreated(response.message);
 
-    reset();
-
-    setTimeout(() => {
-      setShowPopup(false),
-      router.push('/')
-    }, 3000)
+    if (response.message === 'User data updated!') {
+      setSloganCreated('In a few seconds I will fly away and you will go home')
+      setTimeout(() => {
+        setShowPopup(false),
+        reset();
+        router.push('/')
+      }, 3000)
+    } 
   };
 
   const closeMsgPopup = () => {
@@ -85,7 +88,7 @@ const EditUserDataForm = ({ user }) => {
 
   return(
     <div>
-      {showPopup && <Popup msgCreated={msgCreated} closeMsgPopup={closeMsgPopup} />}
+      {showPopup && <Popup msgCreated={msgCreated} closeMsgPopup={closeMsgPopup} sloganCreated={sloganCreated} />}
       <form onSubmit={handleSubmit(onSubmit)} className="w-[90%] md:w-[60%] pt-2 pb-6 mb-2 mx-auto">
 
       <div className="pb-6">
