@@ -29,7 +29,27 @@ export default async function handler (req, res) {
     return;
   }
 
-  const user = await User.create(req.body);
+  const newUser = new User(req.body);
 
-  res.status(201).json({ message: 'User created!' });
+  const validateError = newUser.validateSync();
+  console.log(validateError)
+ 
+  try {
+    await User.create(newUser);
+    res.status(201).json({ message: 'User created!' })
+  } catch(err) {
+    console.log(err);
+    if (err.errors.firstName) {
+      res.status(422).json({ message: err.errors.firstName.message }); 
+    } else if (err.errors.age) {
+      res.status(422).json({ message: err.errors.age.message }); 
+    } else if (err.errors.tagFirst) {
+      res.status(422).json({ message: err.errors.tagFirst.message }); 
+    } else if (err.errors.tagSecond) {
+      res.status(422).json({ message: err.errors.tagSecond.message }); 
+    } else if (err.errors.tagThird) {
+      res.status(422).json({ message: err.errors.tagThird.message }); 
+    }
+  }
+
 }
