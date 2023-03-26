@@ -1,8 +1,8 @@
-# AstroUsers
+# 🚀 AstroUsers
 
 ### Description
 
-🚀 AstroUsers - the outer space community which connecting astronauts from around the world and space. App created with using Next.JS, Tailwind, Mongoose and React Hook Form. It's of course responsive for all devices (also Galaxy Fold 😉).
+AstroUsers - the outer space community which connecting astronauts from around the world and space. App created with using Next.JS, Tailwind, Mongoose and React Hook Form. It's of course responsive for all devices (also Galaxy Fold 😉).
 
 The project constist of:
 - main view displaying all the AstroUsers,
